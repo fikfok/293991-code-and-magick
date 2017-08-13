@@ -56,3 +56,4 @@ window.renderStatistics = function (ctx, names, times) {
 var findMaxTime = function (times) {
   return Math.max.apply(null, times);
 };
+
