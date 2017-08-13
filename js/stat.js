@@ -38,7 +38,7 @@ window.renderStatistics = function (ctx, names, times) {
     return Math.max.apply(null, array);
   };
 
-  var titles = ['Ура вы победили!', 'Список результатов:']
+  var titles = ['Ура вы победили!', 'Список результатов:'];
 
   drawRect(ctx, BLACK_COLOR, rect);
   rect.x -= 10;
