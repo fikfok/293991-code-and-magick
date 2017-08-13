@@ -10,7 +10,7 @@ var scoreBoard = {
   height: 270
 };
 var scoreBoardTitle = {
-  title: ['Ура вы победили!', 'Список результатов:'],
+  titles: ['Ура вы победили!', 'Список результатов:'],
   horizontalAlign: 'start',
   baseLine: 'hanging',
   font: 'bold 16px PT Mono'
