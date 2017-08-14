@@ -15,10 +15,15 @@ window.renderStatistics = function (ctx, names, times) {
     height: 150,
     barWidth: 40,
     barMargin: 50,
-    barColorMe: 'rgba(255, 0, 0, 1)',
-    getBarColorOthers: function () {
-      return 'rgba(0, 0, ' + parseInt(Math.random() * 255, 10).toString() + ', 1)';
+    getBarColor: function (firstValue, secondValue) {
+      return (firstValue.toLowerCase() === secondValue.toLowerCase()) ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, ' + Math.round(Math.random() * 105 + 150) + ', 1)';
     }
+  };
+
+  var textProperty = {
+    textAlign: 'start',
+    textBaseline: 'hanging',
+    font: 'bold 16px PT Mono'
   };
 
   var drawRect = function (context, color, rectangle) {
@@ -28,9 +33,9 @@ window.renderStatistics = function (ctx, names, times) {
 
   var drawText = function (context, color, x, y, text) {
     context.fillStyle = color;
-    context.textAlign = 'start';
-    context.textBaseline = 'hanging';
-    context.font = 'bold 16px PT Mono';
+    context.textAlign = textProperty.textAlign;
+    context.textBaseline = textProperty.textBaseline;
+    context.font = textProperty.font;
     context.fillText(text, x, y);
   };
 
@@ -39,24 +44,19 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   var titles = ['Ура вы победили!', 'Список результатов:'];
-
   drawRect(ctx, BLACK_COLOR, rect);
-  rect.x -= 10;
-  rect.y -= 10;
-  drawRect(ctx, WHITE_COLOR, rect);
+  drawRect(ctx, WHITE_COLOR, {x: rect.x - 10, y: rect.y - 10, width: rect.width, height: rect.height});
   drawText(ctx, BLACK_COLOR, rect.x + rect.width / 2 - ctx.measureText(titles[0]).width / 2, rect.y + 10, titles[0]);
   drawText(ctx, BLACK_COLOR, rect.x + rect.width / 2 - ctx.measureText(titles[1]).width / 2, rect.y + 30, titles[1]);
 
   var maxValue = findMaxTime(times);
   var arrLength = names.length;
-  rect.y = 250;
-  rect.width = histogram.barWidth;
+  var histogramBottom = 250;
   for (var i = 0; i < arrLength; i++) {
-    rect.x += histogram.barWidth + ((i > 0) ? histogram.barMargin : 0);
-    rect.height = -1 * times[i] / maxValue * histogram.height;
-    var currentBarColor = (names[i] === 'Вы') ? histogram.barColorMe : histogram.getBarColorOthers();
-    drawRect(ctx, currentBarColor, rect);
-    drawText(ctx, BLACK_COLOR, rect.x, rect.y + 5, names[i]);
-    drawText(ctx, BLACK_COLOR, rect.x, rect.y + rect.height - 20, parseInt(times[i], 10));
+    var x = rect.x + histogram.barMargin + (histogram.barWidth + histogram.barMargin) * i;
+    var height = -1 * times[i] / maxValue * histogram.height;
+    drawRect(ctx, histogram.getBarColor(names[i], 'Вы'), {x: x, y: histogramBottom, width: histogram.barWidth, height: height});
+    drawText(ctx, BLACK_COLOR, x, histogramBottom + 5, names[i]);
+    drawText(ctx, BLACK_COLOR, x, histogramBottom + height - 20, Math.round(times[i]));
   }
 };
