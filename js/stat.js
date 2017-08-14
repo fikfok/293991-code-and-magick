@@ -4,9 +4,9 @@ window.renderStatistics = function (ctx, names, times) {
   var WHITE_COLOR = 'rgb(255, 255, 255)';
   var BLACK_COLOR = 'rgba(0, 0, 0, 0.7)';
 
-  var rect = {
-    x: 110,
-    y: 20,
+  var scoreBoard = {
+    x: 100,
+    y: 10,
     width: 420,
     height: 270
   };
@@ -44,16 +44,16 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   var titles = ['Ура вы победили!', 'Список результатов:'];
-  drawRect(ctx, BLACK_COLOR, rect);
-  drawRect(ctx, WHITE_COLOR, {x: rect.x - 10, y: rect.y - 10, width: rect.width, height: rect.height});
-  drawText(ctx, BLACK_COLOR, rect.x + rect.width / 2 - ctx.measureText(titles[0]).width / 2, rect.y + 10, titles[0]);
-  drawText(ctx, BLACK_COLOR, rect.x + rect.width / 2 - ctx.measureText(titles[1]).width / 2, rect.y + 30, titles[1]);
+  drawRect(ctx, BLACK_COLOR, {x: scoreBoard.x + 10, y: scoreBoard.y + 10, width: scoreBoard.width, height: scoreBoard.height});
+  drawRect(ctx, WHITE_COLOR, scoreBoard);
+  drawText(ctx, BLACK_COLOR, scoreBoard.x + scoreBoard.width / 2 - ctx.measureText(titles[0]).width / 2, scoreBoard.y + 10, titles[0]);
+  drawText(ctx, BLACK_COLOR, scoreBoard.x + scoreBoard.width / 2 - ctx.measureText(titles[1]).width / 2, scoreBoard.y + 30, titles[1]);
 
   var maxValue = findMaxTime(times);
   var arrLength = names.length;
   var histogramBottom = 250;
   for (var i = 0; i < arrLength; i++) {
-    var x = rect.x + histogram.barMargin + (histogram.barWidth + histogram.barMargin) * i;
+    var x = scoreBoard.x + histogram.barMargin + (histogram.barWidth + histogram.barMargin) * i;
     var height = -1 * times[i] / maxValue * histogram.height;
     drawRect(ctx, histogram.getBarColor(names[i], 'Вы'), {x: x, y: histogramBottom, width: histogram.barWidth, height: height});
     drawText(ctx, BLACK_COLOR, x, histogramBottom + 5, names[i]);
