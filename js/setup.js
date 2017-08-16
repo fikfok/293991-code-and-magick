@@ -8,7 +8,7 @@ var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 /**
  * Возвращение случайного элемента из переданного массива
  * @param {Object} arrayOfElements - массив, из которого будет возвращён случайный элемент
- * @returns {*}
+ * @return {*}
  */
 var getAnyElement = function (arrayOfElements) {
   return arrayOfElements[Math.round(Math.random() * (arrayOfElements.length - 1))];
@@ -16,7 +16,7 @@ var getAnyElement = function (arrayOfElements) {
 
 /**
  * Создание случайного набора свойств для одного мага
- * @returns {{name: string, coatColor, eyesColor}}
+ * @return {{name: string, coatColor, eyesColor}}
  *    name - ФИО мага
  *    coatColor - цвет одеяния
  *    eyesColor - цвет глаз
@@ -30,7 +30,7 @@ var generateWizard = function () {
 /**
  * Генерация HTML разметки для одного мага путём клонирования из шаблона
  * @param {Object} properties - набор свойств, которые будут внесены в данную разметку
- * @returns {Node}
+ * @return {Node}
  */
 var renderWizard = function (properties) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
