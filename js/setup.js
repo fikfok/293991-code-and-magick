@@ -7,7 +7,7 @@ var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 /**
  * Возвращение случайного элемента из переданного массива
- * @param arrayOfElements {obj} - массив, из которого будет возвращён случайный элемент
+ * @param arrayOfElements {Object} - массив, из которого будет возвращён случайный элемент
  * @returns {*}
  */
 var getAnyElement = function (arrayOfElements) {
@@ -29,7 +29,7 @@ var generateWizard = function () {
 
 /**
  * Генерация HTML разметки для одного мага путём клонирования из шаблона
- * @param properties {obj} - набор свойств, которые будут внесены в данную разметку
+ * @param properties {Object} - набор свойств, которые будут внесены в данную разметку
  * @returns {Node}
  */
 var renderWizard = function (properties) {
@@ -40,8 +40,8 @@ var renderWizard = function (properties) {
 
 /**
  * Внесение свойств конкретного мага в сгенерированную разметку
- * @param currentWizard {obj} - DOM узел сгенерированного мага
- * @param properties {obj} - набор свойств для конкретного мага
+ * @param currentWizard {Object} - DOM узел сгенерированного мага
+ * @param properties {Object} - набор свойств для конкретного мага
  */
 var writeProperties = function (currentWizard, properties) {
   currentWizard.querySelector('.setup-similar-label').textContent = properties.name;
