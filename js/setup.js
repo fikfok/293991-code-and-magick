@@ -2,12 +2,12 @@
 
 var FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)']
-var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green']
+var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 /**
  * Возвращение случайного элемента из переданного массива
- * @param arrayOfElements - массив, из которого будет возвращён случайный элемент
+ * @param arrayOfElements {obj} - массив, из которого будет возвращён случайный элемент
  * @returns {*}
  */
 var getAnyElement = function (arrayOfElements) {
@@ -29,7 +29,7 @@ var generateWizard = function () {
 
 /**
  * Генерация HTML разметки для одного мага путём клонирования из шаблона
- * @param properties - набор свойств, которые будут внесены в данную разметку
+ * @param properties {obj} - набор свойств, которые будут внесены в данную разметку
  * @returns {Node}
  */
 var renderWizard = function (properties) {
@@ -40,8 +40,8 @@ var renderWizard = function (properties) {
 
 /**
  * Внесение свойств конкретного мага в сгенерированную разметку
- * @param currentWizard - DOM узел сгенерированного мага
- * @param properties - набор свойств для конкретного мага
+ * @param currentWizard {obj} - DOM узел сгенерированного мага
+ * @param properties {obj} - набор свойств для конкретного мага
  */
 var writeProperties = function (currentWizard, properties) {
   currentWizard.querySelector('.setup-similar-label').textContent = properties.name;
@@ -49,7 +49,7 @@ var writeProperties = function (currentWizard, properties) {
   currentWizard.querySelector('.wizard-eyes').style.fill = properties.eyesColor;
 };
 
-var fourWizards = [generateWizard(), generateWizard(), generateWizard(), generateWizard()]
+var fourWizards = [generateWizard(), generateWizard(), generateWizard(), generateWizard()];
 var setupWindow = document.querySelector('.setup');
 setupWindow.classList.remove('hidden');
 
