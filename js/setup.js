@@ -1,17 +1,33 @@
 'use strict';
 
-var FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var firstNames = {
+  values: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
+  counter: 0
+};
+var secondNames = {
+  values: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'],
+  counter: 0
+};
+var coatColors = {
+  values: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
+  counter: 0
+};
+var eyesColors = {
+  values: ['black', 'red', 'blue', 'yellow', 'green'],
+  counter: 0
+};
 
 /**
- * Возвращение случайного элемента из переданного массива
+ * Возвращение случайного элемента из переданного массива. Применяется перестановка Фишера
  * @param {Object} arrayOfElements - массив, из которого будет возвращён случайный элемент
  * @return {*}
  */
 var getAnyElement = function (arrayOfElements) {
-  return arrayOfElements[Math.round(Math.random() * (arrayOfElements.length - 1))];
+  var elementPosition = Math.round(Math.random() * ((arrayOfElements.values.length - 1) - arrayOfElements.counter) + arrayOfElements.counter);
+  var element = arrayOfElements.values[elementPosition];
+  arrayOfElements.values[elementPosition] = arrayOfElements.values.splice(arrayOfElements.counter, 1, arrayOfElements.values[elementPosition])[0];
+  arrayOfElements.counter++;
+  return element;
 };
 
 /**
@@ -22,9 +38,9 @@ var getAnyElement = function (arrayOfElements) {
  *    eyesColor - цвет глаз
  */
 var generateWizard = function () {
-  return {name: getAnyElement(FIRST_NAMES) + ' ' + getAnyElement(SECOND_NAMES),
-    coatColor: getAnyElement(COAT_COLORS),
-    eyesColor: getAnyElement(EYES_COLORS)};
+  return {name: getAnyElement(firstNames) + ' ' + getAnyElement(secondNames),
+    coatColor: getAnyElement(coatColors),
+    eyesColor: getAnyElement(eyesColors)};
 };
 
 /**
