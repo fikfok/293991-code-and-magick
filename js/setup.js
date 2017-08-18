@@ -65,7 +65,10 @@ var writeProperties = function (currentWizard, properties) {
   currentWizard.querySelector('.wizard-eyes').style.fill = properties.eyesColor;
 };
 
-var fourWizards = [generateWizard(), generateWizard(), generateWizard(), generateWizard()];
+var arrayOfWizards = [];
+for (var i = 0; i < 4; i++) {
+  arrayOfWizards.push(generateWizard());
+}
 var setupWindow = document.querySelector('.setup');
 setupWindow.classList.remove('hidden');
 
@@ -73,8 +76,8 @@ var similarListElement = setupWindow.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < fourWizards.length; i++) {
-  fragment.appendChild(renderWizard(fourWizards[i]));
+for (var i = 0; i < arrayOfWizards.length; i++) {
+  fragment.appendChild(renderWizard(arrayOfWizards[i]));
 }
 
 similarListElement.appendChild(fragment);
